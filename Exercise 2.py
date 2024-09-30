@@ -6,6 +6,6 @@ def filter_even_numbers(numbers: list) -> list:
     
     return [num for num in numbers if num % 2 == 0]
 
-print(is_palindrome("A man a plan a canal Panama"))  # Output: True
+print(is_palindrome("A man a plan a canal Panama"))  
 
-print(filter_even_numbers([1, 2, 3, 4, 5, 6]))  # Output: [2, 4, 6]
+print(filter_even_numbers([1, 2, 3, 4, 5, 6]))  
