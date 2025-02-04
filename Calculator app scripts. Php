@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Multipurpose Calculator</title>
+</head>
+<body>
+    <h1>Multipurpose Calculator</h1>
+    <form method="post">
+        <label for="number1">Number 1: </label>
+        <input type="number" name="number1" required><br><br>
+        
+        <label for="number2">Number 2: </label>
+        <input type="number" name="number2" required><br><br>
+        
+        <label for="operation">Operation: </label>
+        <select name="operation">
+            <option value="add">Addition (+)</option>
+            <option value="subtract">Subtraction (-)</option>
+            <option value="multiply">Multiplication (*)</option>
+            <option value="divide">Division (/)</option>
+            <option value="power">Exponentiation (x^y)</option>
+            <option value="sqrt">Square Root (√x)</option>
+            <option value="log">Logarithm (log x)</option>
+            <option value="sin">Sine (sin x)</option>
+            <option value="cos">Cosine (cos x)</option>
+            <option value="tan">Tangent (tan x)</option>
+        </select><br><br>
+        
+        <button type="submit" name="submit">Calculate</button>
+    </form>
+    
+    <?php
+    if (isset($_POST['submit'])) {
+        $number1 = $_POST['number1'];
+        $number2 = $_POST['number2'];
+        $operation = $_POST['operation'];
+        
+        $result = '';
+        
+        switch ($operation) {
+            case 'add':
+                $result = $number1 + $number2;
+                break;
+            case 'subtract':
+                $result = $number1 - $number2;
+                break;
+            case 'multiply':
+                $result = $number1 * $number2;
+                break;
+            case 'divide':
+                if ($number2 != 0) {
+                    $result = $number1 / $number2;
+                } else {
+                    $result = 'Cannot divide by zero';
+                }
+                break;
+            case 'power':
+                $result = pow($number1, $number2);
+                break;
+            case 'sqrt':
+                $result = sqrt($number1);
+                break;
+            case 'log':
+                if ($number1 > 0) {
+                    $result = log($number1);
+                } else {
+                    $result = 'Logarithm undefined for non-positive values';
+                }
+                break;
+            case 'sin':
+                $result = sin(deg2rad($number1)); // Convert degrees to radians
+                break;
+            case 'cos':
+                $result = cos(deg2rad($number1)); // Convert degrees to radians
+                break;
+            case 'tan':
+                $result = tan(deg2rad($number1)); // Convert degrees to radians
+                break;
+            default:
+                $result = 'Invalid operation';
+        }
+        
+        echo "<h2>Result: " . $result . "</h2>";
+    }
+    ?>
+</body>
+</html>
